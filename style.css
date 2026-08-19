@@ -1,0 +1,868 @@
+/* =========================================================
+   1. GLOBAL RESET & VARIABLES
+========================================================= */
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+    --secondary-color: #f8fafc;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --bg-gradient: linear-gradient(135deg, #f0f7ff 0%, #e0e7ff 100%);
+    --card-bg: rgba(255, 255, 255, 0.75);
+    --card-border: rgba(255, 255, 255, 0.8);
+    --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-mode {
+    --primary-color: #3b82f6;
+    --primary-hover: #60a5fa;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    min-height: 100vh;
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Background Ambient Blobs */
+.bg-blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    opacity: 0.5;
+}
+
+.blob-1 {
+    width: 350px;
+    height: 350px;
+    background: #60a5fa;
+    top: -50px;
+    left: -50px;
+}
+
+.blob-2 {
+    width: 400px;
+    height: 400px;
+    background: #a78bfa;
+    bottom: 10%;
+    right: -100px;
+}
+
+.blob-3 {
+    width: 300px;
+    height: 300px;
+    background: #38bdf8;
+    top: 40%;
+    left: 30%;
+}
+
+.glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   2. NAVIGATION BAR
+========================================================= */
+header {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1100px;
+    z-index: 1000;
+}
+
+.glass-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 28px;
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+}
+
+.logo a {
+    font-size: 20px;
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--text-main);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #2563eb, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-links a {
+    position: relative;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--primary-color);
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #2563eb, #6366f1);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-resume-btn {
+    background: var(--primary-color);
+    color: #ffffff !important;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.nav-resume-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+.dark-mode-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 8px;
+    transition: transform 0.3s;
+}
+
+.dark-mode-btn:hover {
+    transform: scale(1.1);
+}
+
+
+/* =========================================================
+   3. HERO SECTION
+========================================================= */
+section {
+    padding: 60px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.hero {
+    position: relative;
+    margin-top: 120px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 50px;
+}
+
+.hero-image {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.hero-image::before {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.4), rgba(139, 92, 246, 0.3));
+    filter: blur(18px);
+    z-index: 0;
+}
+
+.img-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.img-wrapper img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+    display: block;
+}
+
+.floating-badge {
+    position: absolute;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: var(--shadow);
+    z-index: 2;
+}
+
+.badge-bottom {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    color: #eab308;
+}
+
+.badge-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    background-color: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    }
+}
+
+.intro-greeting {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.hero-text h1 {
+    font-size: 36px;
+    line-height: 1.2;
+    margin: 8px 0;
+}
+
+.hero-bio {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.primary-btn, .secondary-btn {
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.primary-btn.subtle-glow-btn {
+    background: #2563eb;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+
+.primary-btn.subtle-glow-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--text-main);
+    border: 1.5px solid var(--text-muted);
+}
+
+.secondary-btn:hover {
+    background: rgba(37, 99, 235, 0.08);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   4. ABOUT & WHY ME SECTIONS
+========================================================= */
+.section-tag {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--primary-color);
+}
+
+.section-title {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+}
+
+.about-text {
+    padding: 30px;
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* Sakto nga space tali sa mga paragraph */
+.about-text p {
+    margin-bottom: 1.2rem;
+}
+
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.why-card {
+    padding: 25px;
+}
+
+.why-icon {
+    font-size: 28px;
+    color: var(--primary-color);
+    margin-bottom: 12px;
+}
+
+.why-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.why-card p {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+
+/* =========================================================
+   5. CORE SKILLS SECTION
+========================================================= */
+.skills-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 25px;
+}
+
+.skill-pill {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.skill-pill:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-color);
+}
+
+.skill-pill i {
+    color: #10b981;
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   6. TOOLS & SOFTWARE SECTION (LAKIP CAPCUT)
+========================================================= */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.tool-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.tool-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.tool-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+
+/* =========================================================
+   7. PROFESSIONAL EXPERIENCE SECTION
+========================================================= */
+.timeline {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.experience-card {
+    padding: 25px;
+}
+
+.experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.job-date {
+    font-size: 13px;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.company-name {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag-list span {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary-color);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   8. PROJECTS SECTION
+========================================================= */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.project-card {
+    padding: 25px;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.project-icon-badge {
+    font-size: 24px;
+}
+
+.project-tool {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.project-detail {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 10px 0 20px 0;
+}
+
+.project-btn {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
+/* =========================================================
+   9. CONTACT SECTION & CENTERED SEND BUTTON
+========================================================= */
+.contact-card {
+    padding: 40px;
+}
+
+.contact-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.contact-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.info-item i {
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.info-item div span {
+    font-size: 12px;
+    color: var(--text-muted);
+    display: block;
+}
+
+.info-item div a, .info-item div p {
+    font-weight: 700;
+    color: var(--text-main);
+    text-decoration: none;
+}
+
+.copy-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.contact-form {
+    text-align: center; /* Center the Send Message button */
+}
+
+.contact-form .form-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 14px 18px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    color: #0f172a;
+    background-color: #ffffff !important;
+    border: 2px solid #94a3b8 !important;
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: #64748b;
+    opacity: 1;
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+    border-color: #2563eb !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2) !important;
+}
+
+body.dark-mode .contact-form input[type="text"],
+body.dark-mode .contact-form input[type="email"],
+body.dark-mode .contact-form textarea {
+    background-color: #1e293b !important;
+    color: #f8fafc !important;
+    border: 2px solid #475569 !important;
+}
+
+body.dark-mode .contact-form input::placeholder,
+body.dark-mode .contact-form textarea::placeholder {
+    color: #94a3b8;
+}
+
+body.dark-mode .contact-form input[type="text"]:focus,
+body.dark-mode .contact-form input[type="email"]:focus,
+body.dark-mode .contact-form textarea:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Centered Button Style */
+.send-msg-btn {
+    padding: 13px 32px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+    margin: 0 auto;
+}
+
+.send-msg-btn:hover {
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+
+/* =========================================================
+   10. CLEAN & SEAMLESS FOOTER (WALAY BOX O OVERPOWERING BAR)
+========================================================= */
+.styled-footer {
+    width: 100%;
+    margin-top: 60px;
+    padding: 30px 20px;
+    background: transparent;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+body.dark-mode .styled-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: none;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.footer-name {
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.footer-tagline {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+
+/* =========================================================
+   11. RESPONSIVE MOBILE RULES
+========================================================= */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 100px;
+        padding: 30px 20px;
+    }
+
+    .contact-body {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        display: none;
+    }
+}
+/* =========================================================
+   RESUME SECTION STYLES
+========================================================= */
+.resume-section {
+    padding: 60px 20px;
+}
+
+.resume-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.resume-title.center {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.resume-card {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.resume-preview-wrapper {
+    width: 100%;
+    max-width: 900px;
+    height: 700px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    background: #ffffff;
+    box-shadow: var(--shadow);
+}
+
+.resume-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.resume-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .resume-preview-wrapper {
+        height: 450px;
+    }
+}
