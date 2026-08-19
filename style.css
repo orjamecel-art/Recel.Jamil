@@ -792,21 +792,87 @@ body.dark-mode .styled-footer {
 
 
 /* =========================================================
-   11. RESPONSIVE MOBILE RULES
+   11. RESPONSIVE MOBILE RULES (UPDATED FOR PERFECT MOBILE VIEW)
 ========================================================= */
 @media (max-width: 768px) {
+    section {
+        padding: 40px 15px;
+    }
+
+    header {
+        width: 95%;
+        top: 10px;
+    }
+
+    .glass-nav {
+        padding: 10px 16px;
+    }
+
+    .nav-right {
+        gap: 10px;
+    }
+
+    .nav-links {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        gap: 12px;
+        padding-bottom: 2px;
+        max-width: 160px;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .nav-resume-btn {
+        padding: 6px 12px;
+        font-size: 11px;
+    }
+
     .hero {
         flex-direction: column;
         text-align: center;
         margin-top: 100px;
-        padding: 30px 20px;
+        padding: 30px 15px;
+        gap: 25px;
+    }
+
+    .hero-text h1 {
+        font-size: 26px;
+    }
+
+    .hero-bio {
+        font-size: 14px;
+    }
+
+    .buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .primary-btn, .secondary-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .contact-card {
+        padding: 20px;
     }
 
     .contact-body {
         grid-template-columns: 1fr;
+        gap: 25px;
     }
 
-    .nav-links {
-        display: none;
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
     }
 }
