@@ -409,7 +409,6 @@ section {
     line-height: 1.8;
 }
 
-/* Sakto nga space tali sa mga paragraph */
 .about-text p {
     margin-bottom: 1.2rem;
 }
@@ -482,7 +481,7 @@ section {
 
 
 /* =========================================================
-   6. TOOLS & SOFTWARE SECTION (LAKIP CAPCUT)
+   6. TOOLS & SOFTWARE SECTION
 ========================================================= */
 .tools-grid {
     display: grid;
@@ -671,7 +670,7 @@ section {
 }
 
 .contact-form {
-    text-align: center; /* Center the Send Message button */
+    text-align: center;
 }
 
 .contact-form .form-group {
@@ -730,7 +729,6 @@ body.dark-mode .contact-form textarea:focus {
     box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3) !important;
 }
 
-/* Centered Button Style */
 .send-msg-btn {
     padding: 13px 32px;
     border-radius: 30px;
@@ -756,7 +754,7 @@ body.dark-mode .contact-form textarea:focus {
 
 
 /* =========================================================
-   10. CLEAN & SEAMLESS FOOTER (WALAY BOX O OVERPOWERING BAR)
+   10. CLEAN & SEAMLESS FOOTER
 ========================================================= */
 .styled-footer {
     width: 100%;
@@ -810,59 +808,5 @@ body.dark-mode .styled-footer {
 
     .nav-links {
         display: none;
-    }
-}
-/* =========================================================
-   RESUME SECTION STYLES
-========================================================= */
-.resume-section {
-    padding: 60px 20px;
-}
-
-.resume-container {
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.resume-title.center {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.resume-card {
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 25px;
-}
-
-.resume-preview-wrapper {
-    width: 100%;
-    max-width: 900px;
-    height: 700px;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--card-border);
-    background: #ffffff;
-    box-shadow: var(--shadow);
-}
-
-.resume-iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.resume-actions {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-@media (max-width: 768px) {
-    .resume-preview-wrapper {
-        height: 450px;
     }
 }
